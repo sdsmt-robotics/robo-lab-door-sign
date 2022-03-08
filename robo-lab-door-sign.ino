@@ -116,6 +116,19 @@ void print3DPC() {
   blankDelay(delayTime);
 }
 
+void printElderberries() {
+  printTeamName("YER MOTHER");
+  printMeetingName("WAS A HAM-");
+  printMeetingDetails("STER AND", "YER FATHER");
+  blankDelay(delayTime);
+  printTeamName("SMELT OF");
+  printMeetingName("ELDER");
+  printMeetingDetails("BERRIES", "");
+  blankDelay(delayTime);
+}
+
+int loopCounter = 1;
+
 void setup() {
   matrix.begin();
 
@@ -127,6 +140,9 @@ void setup() {
 }
 
 void loop() {
+  if (loopCounter++ % 100 == 0)
+    printElderberries();
+    
   printRobotics();
   printUAS();
   print3DPC();
