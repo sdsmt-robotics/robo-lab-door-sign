@@ -8,7 +8,8 @@
 #define C   A2
 #define D   A3
 
-#define TEXT_COLOR 2,2,2
+#define COLOR_WHITE 1,1,1
+#define COLOR_BLACK 0,0,0
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false, 64);
 
@@ -16,7 +17,7 @@ constexpr int delayTime = 7000; // ms
 constexpr int blankTime = 100; // ms
 
 void matrixClear() {
-  matrix.fillScreen(matrix.Color333(0,0,0));
+  matrix.fillScreen(matrix.Color333(COLOR_BLACK));
   matrix.setCursor(0,0);
 }
 
@@ -34,7 +35,7 @@ void blankDelay(int ms)
 
 void printTeamName(const char name[], bool shouldBlank = true) {
   // clear the team name field
-  matrix.fillRect(0, 0, matrix.width(), 8, matrix.Color333(0,0,0));
+  matrix.fillRect(0, 0, matrix.width(), 8, matrix.Color333(COLOR_BLACK));
   // print on line 1
   matrix.setCursor(0, 0);
 
@@ -43,12 +44,12 @@ void printTeamName(const char name[], bool shouldBlank = true) {
   }
   
   matrix.println(name);
-  matrix.drawLine(0, 7, matrix.width() - 1, 7, matrix.Color333(TEXT_COLOR));
+  matrix.drawLine(0, 7, matrix.width() - 1, 7, matrix.Color333(COLOR_WHITE));
 }
 
 void printMeetingName(const char name[], bool shouldBlank = true) {
   // clear the team name field
-  matrix.fillRect(0, 9, matrix.width(), 7, matrix.Color333(0,0,0));
+  matrix.fillRect(0, 9, matrix.width(), 7, matrix.Color333(COLOR_BLACK));
   // print on line 2
   matrix.setCursor(0, 9);
 
@@ -61,7 +62,7 @@ void printMeetingName(const char name[], bool shouldBlank = true) {
 
 void printMeetingDetails(const char line1[], const char line2[], bool shouldBlank = true) {
   // clear the details fields
-  matrix.fillRect(0, 17, matrix.width(), 16, matrix.Color333(0,0,0));
+  matrix.fillRect(0, 17, matrix.width(), 16, matrix.Color333(COLOR_BLACK));
   matrix.setCursor(0, 17);
 
   if (shouldBlank) {
@@ -120,7 +121,7 @@ void setup() {
 
   matrix.setTextSize(1);
   matrix.setCursor(0,0);
-  matrix.setTextColor(matrix.Color333(TEXT_COLOR));
+  matrix.setTextColor(matrix.Color333(COLOR_WHITE));
   matrix.print("HELLO");
   blankDelay(500);
 }
